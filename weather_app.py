@@ -1,5 +1,4 @@
 import requests
-from pprint import pprint
 
 def get_weather(api_key):
     url = "https://api.openweathermap.org/data/2.5/weather"
@@ -27,7 +26,7 @@ def get_weather(api_key):
                 'ветер': f"{data['wind']['speed']} м/с"
             }
 
-            return weather_info, data
+            return weather_info
         
         elif res.status_code == 401:
             print("Неверный ключ")
@@ -47,17 +46,14 @@ def main():
     while True:
         choice = input("0 - для выхода: ")
 
-        weather, data = get_weather(api)
-
         if choice == "0":
             print("До свидания")
             return
 
-        elif choice == "+":
-            pprint(data)
-
+        weather = get_weather(api)
+        
         if weather:
-            print("\n----------------------------------")
+
             print(f"Город: {weather['город']}")
             print(f"Температура: {weather['температура']} (ощущается как {weather['ощущается_как']})")
             print(f"Погода: {weather['описание_погоды']}")
