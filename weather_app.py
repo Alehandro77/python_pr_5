@@ -1,4 +1,5 @@
 import requests
+from secret import API
 
 def get_weather(api_key):
     url = "https://api.openweathermap.org/data/2.5/weather"
@@ -41,7 +42,7 @@ def get_weather(api_key):
         return
     
 def main():
-    api = "16b9f6bd8aead0b8d4c103ba97f435de"
+    api = API
 
     while True:
         choice = input("0 - для выхода: ")
